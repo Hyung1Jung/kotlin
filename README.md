@@ -591,11 +591,202 @@ answer3 = 42
 - val : 변경 불가능한 참조를 저장하는 변수. 일단 초기화하면 제대입이 불가능
   - 정확히 한 버만 초기화 실행 가능
 - var : 변경 가능한 참조. 변수 타입은 고정
+```kotlin
+// 아래 코드 가능: message를 한 번만 초기화한다는 것을 컴파일러가 알 수 있음
+val message: String
+if (canPerformOperation()) {
+message = "Success"
+} else {
+message = "Failed"
+}
+```
+
+### 문자열 템플릿
+```kotlin
+val name = "bk"
+println("Hello, $name!") // $ 뒤에 변수 사용
+println("Hello, ${name}입니다.") // $ 뒤에 중괄호 사용
+println("\$name의 값 = $name") // $ 자체는 \$ 탈출문자 사용
+println("max(1, 2) = ${max(1, 2)}") // 중괄호 안에서 식 사용
+println("args: ${if (args.isEmpty()) "empty" else args[0] }") // 식에서 큰 따옴표 사용
+```
+### 클래스
+```kotlin
+// Kotlin
+class Person(val name: String) // 코틀린 클래스 기본 가시성: public
+```
+
+```java
+// Java
+public class Person {
+    private final String name;
+    
+    public Person(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+}
+```
+
+### 프로퍼티
+프로퍼티를 기본 언어 기능으로 제공하며 자바의 필드와 접근자 메서드를 완전히 대신함
+```kotlin
+class Person(
+    val name: String, // 읽기 전용(val) 프로퍼티
+    var isMarried: Boolean // 변경 가능(var) 프로퍼티
+)
+```
+```kotlin
+Person p = Person("Bob", false)
+println(p.name)
+println(p.isMarried)
+p.isMarried = true
+```
+
+### 프로퍼티의 자바 표현
+기본적으로 코틀린은 프로퍼티에 대해 다음을 생성
+- 읽기 전용 프로퍼티: 비공개 필드와 필드를 읽는 공개 게터 생성
+- 쓸 수 있는 프로퍼티: 비공개 필드와 공개 게터, 공개 세터 생성
+- 프로퍼티 이름이 is로 시작할 경우
+  - 프로퍼티 이름과 동일한 게터 생성: 예, isMarried())
+  - is 대신에 set을 사용하는 세터 생성: 예, setMarried())
+    
+지원(backing) 필드: 프로퍼티의 값을 저장하기 위한 비공개 필드 
+
+### 커스텀 접근자
+```kotlin
+    class Rectanble(val height: Int, val width: Int) {
+        val isSquare: Boolean
+            get() { // 프로퍼티 게터 선언, 블록 사용
+                return height == width;
+            }
+        val size: Int
+            get() = height * width // 식 사용
+    }
+```
+
+### 소스코드 구조
+- 파일의 맨 앞에 package 문 사용해서 패키지 지정
+- 파일의 모든 선언(클래스, 함수, 프로퍼티 등)이 해당 패키지에 속함
+- 디렉토리 구조와 패키지 구조가 일치할 필요 없음 (하지만, 패키지별로 디렉토리 구성이 나음)
+- 같은 패키지에 속해 있다면 다른 파일에서 임포트 없이 정의한 선언 사용 가능
+- 다른 패키지에서 사용하려면 import 키워드로 사용할 선언을 임포트
+  
+### enum
+enum 키워드를 사용해서 열거타입 지정
+```kotlin
+enum class Color {
+    RED, ORANGE, YELLO, BLUE, VIOLET
+}
+```
+프로퍼티와 메서드 선언 가능 (메서드 선언시 마지막 열거 값 뒤에 세미콜론 필요)
+```kotlin
+enum class Color(val r: Int, val g: Int, val b: Int) {
+    RED(255, 0, 0), ORANGE(255, 165, 0), YELLOW(255, 255, 0),
+    BLUE(0, 0, 255), VIOLET(238, 130, 238);
+  
+    fun rgb() = (r * 256 + g) * 256 + b
+}
+println(Color.BLUE.rgb())
+```
+
+### when
+자바의 switch와 유사, when은 식
+- 각 분기에 break 필요 없음
+```kotlin
+    fun getWarmth(color: Color) =
+            when (color) {
+                Color.RED ‐> "warm"
+                Color.ORANGE ‐> "warm"
+                Color.YELLOW ‐> "warm"
+                Color.BLUE ‐> "cold"
+                Color.VIOLET ‐> "cold"
+            }
+```
+
+여러 매치 패턴을 지정할 수 있음
+```kotlin
+    fun getWarmth(color: Color) =
+            when (color) {
+                Color.RED, Color.ORANGE, Color.YELLOW ‐> "warm"
+                Color.BLUE, Color.VIOLET ‐> "cold"
+            }
+```
+
+모든 분기 식에 만족하지 않으면 else 분기
+```kotlin
+    fun getWarmth(color: Color) =
+            when (color) {
+                Color.RED ‐> "very warm"
+                Color.ORANGE, Color.YELLOW ‐> "warm"
+                else ‐> "cold"
+            }
+```
+
+### when 식은 객체의 동등성 사용
+```kotlin
+    fun mix(c1: Color, c2: Color) =
+            when (setOf(c1, c2)) {
+                setOf(RED, YELLOW) ‐> ORANGE
+                setOf(YELLOW, BLUE) ‐> GREEN
+                else ‐> throw Exception("Dirty color")
+            }
+```
+
+### 인자 없는 when 식
+```kotlin
+    fun mixOpt(c1: Color, c2: Color) =
+        when {
+          c1 == RED && c2 == YELLOW ‐> ORANGE
+          c1 == YELLOW && c2 == RED ‐> ORANGE
+          c1 == YELLOW && c2 == BLUE ‐> GREEN
+          else ‐> throw Exception("Dirty color")
+        }
+```
+when에 인자가 없으려면, 각 분기의 조건이 불리언 결과를 계산하는 식이어야 함
+
+### 스마트 캐스트
+```kotlin
+    fun eval(e: Expr): Int {
+        if (e is Num) {
+            val n = e as Num // 실제로는 필요 없음
+            return n.value
+        }
+        if (e is Sum) { // 컴파일러가 캐스트 처리
+            return eval(e.left) + eval(e.right)
+        }
+        throw IllegalArgumentException("Unknown exp")
+    }
+```
+
+```kotlin
+fun eval(e: Expr): Int {
+    when (e) {
+        is Num ‐> e.value // 컴파일러가 캐스트 처리
+        is Sum ‐> eval(e.left) + eval(e.right)
+        else ‐>
+          throw IllegalArgumentException("Unknown exp")
+  }
+```
+- is 연산자로 변수 타입 검사
+- 스마트 캐스트: is 검사 뒤 컴파일러가 캐스팅 수행
+  - is 검사 뒤에 변수가 바뀌지 않는 경우에 적용
+
+### if와 when의 블록
+블록의 마지막 식이 if와 when의 결과가 됨
+```kotlin
+fun evalWithLogging(e: Expr) : Int =
+    
+```
 
 
 
   </div>
 </details>
+
+
 출처 :
 
 [코틀린 공식 레퍼런스](https://kotlinlang.org/docs/home.html)
