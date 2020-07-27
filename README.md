@@ -10,6 +10,7 @@ Java로 작성된 프로젝트에 점진적으로 Kotlin을 도입한다.
 
 ## 기본 개념 정리
 - [기본 문법, 변수와 자료형, 함수, 연산자 개념 정리](https://github.com/Hyung1Jung/kotlin/blob/master/basic/src/me/hyungil/%EA%B0%9C%EC%9A%94%20%EB%B0%8F%20%EA%B8%B0%EB%B3%B8%20%EB%AC%B8%EB%B2%95.md)
+- [제어문 / IF문, When, 반복문, break countinue return](https://github.com/Hyung1Jung/kotlin/blob/master/basic/src/me/hyungil/%EC%A0%9C%EC%96%B4%EB%AC%B8.md)
 
 ## 코틀린 공식 레퍼런스 공부 기록
 
