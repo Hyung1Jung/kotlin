@@ -1,3 +1,5 @@
+package me.hyungil.inner_class
+
 fun main() {
 
     val obj1 = Outer1()
