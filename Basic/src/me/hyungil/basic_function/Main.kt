@@ -1,102 +1,109 @@
-import com.sun.org.apache.xpath.internal.operations.Bool
+package me.hyungil.basic_function
 
 fun main() {
-    // 단항 연산자 : 항이 하나인 연산자
+    test1()
+    test2(100, 11.11)
 
-    // + : 양수 -> 양수, 음수 -> 음수
-    val a1:Int = 10
-    val a2:Int = -10
+    val k1:Int = 100
+    val k2:Double = 11.11
+    test2(k1, k2)
 
-    val r1:Int = +a1
-    val r2:Int = +a2
-    println("a1 : $a1, r1 : $r1")
-    println("a2 : $a2, r2 : $r2")
+    test2(500, 55.55)
+    test2(a2=66.66, a1=600)
 
-    // - : 양수 -> 음수, 음수 -> 양수
-    val r3:Int = -a1
-    val r4:Int = -a2
-    println("a1 : $a1, r3 : $r3")
-    println("a2 : $a2, r4 : $r4")
+    test3(100, 11.11)
+    test3(200)
+    test3(a2=33.33)
 
-    // ! : true -> false, false -> true
-    val a3:Boolean = true
-    val a4:Boolean = false
-
-    val r5:Boolean = !a3
-    val r6:Boolean = !a4
-    println("a3 : $a3, r5 : $r5")
-    println("a4 : $a4, r6 : $r6")
-
-    println("---------------------------------")
-
-    var a5:Int = 10
-    var a6:Int = 10
-
-    val r7:Int = a5++
-    val r8:Int = a6--
-    println("a5 : $a5, r7 : $r7")
-    println("a6 : $a6, r8 : $r8")
-
-    var a7:Int = 10
-    var a8:Int = 10
-
-    val r9:Int = ++a7
-    val r10:Int = --a8
-    println("a7 : $a7, r9 : $r9")
-    println("a8 : $a8, r10 : $r10")
-
+    val r1:Int = test4(100, 200)
+    val r2:Int = test4(1000, 2000)
+    println("r1 : $r1")
+    println("r2 : $r2")
     println("-------------------------")
 
-    val r11:Int = 10 + 3
-    val r12:Int = 10 - 3
-    val r13:Int = 10 * 3
-    val r14:Int = 10 / 3
-    val r15:Int = 10 % 3
-    println("$r11, $r12, $r13, $r14, $r15")
+    test5()
 
-    val r16:IntRange = 10..20
-    println("r16 : $r16")
+    test6()
 
-    println("--------------------------------")
+    test7()
+    test7(100)
+    test7(11.11)
+    test7(100, 200)
 
-    var a9:Int = 10
-    var a10:Int = 10
-    var a11:Int = 10
-    var a12:Int = 10
-    var a13:Int = 10
+    test8()
 
-    a9 += 3
-    a10 -= 3
-    a11 *= 3
-    a12 /= 3
-    a13 %= 3
-
-    println("$a9, $a10, $a11, $a12, $a13")
-
-    println("---------------------------")
-
-    val a14:Int = 10
-
-    val r17:Boolean = a14 == 10
-    val r18:Boolean = a14 != 10
-
-    println("$r17, $r18")
-
-    val r19:Boolean = a14 == 20
-    val r20:Boolean = a14 != 20
-
-    println("$r19, $r20")
-
-    println("--------------------------------")
-
-    val a15:Int = 10
-
-    val r21:Boolean = a15 < 20
-    val r22:Boolean = a15 > 20
-    val r23:Boolean = a15 <= 10
-    val r24:Boolean = a15 >= 10
-    println("$r21, $r22, $r23, $r24")
+    // test9()
 }
+
+fun test1(){
+    println("test1 호출")
+    println("---------------------")
+}
+
+fun test2(a1:Int, a2:Double){
+    println("test2 호출")
+    println("a1 : $a1")
+    println("a2 : $a2")
+    println("----------------------")
+}
+
+fun test3(a1:Int = 0, a2:Double = 0.0){
+    println("test3 호출")
+    println("a1 : $a1")
+    println("a2 : $a2")
+    println("----------------------")
+}
+
+fun test4(a1:Int, a2:Int) : Int {
+    val result:Int = a1 + a2
+    return result
+}
+
+fun test5() : Unit{
+    println("test5 호출")
+    println("----------------------------")
+}
+
+fun test6() {
+    println("test6 호출")
+    println("----------------------------")
+}
+
+fun test7(){
+    println("test7 호출 - 매개변수 없음")
+    println("------------------------------")
+}
+
+fun test7(a1:Int){
+    println("test7 호출 - 매개 변수 한 개(Int)")
+    println("-----------------------------")
+}
+
+fun test7(a1:Double){
+    println("test7 호출 - 매개 변수 한 개(Double)")
+    println("----------------------------")
+}
+
+fun test7(a1:Int, a2:Int){
+    println("test7 호출 - 매개 변수 두 개")
+    println("------------------------------")
+}
+
+fun test8(){
+    println("test8 호출")
+
+    fun test9(){
+        println("test9 호출")
+    }
+
+    test9()
+}
+
+
+
+
+
+
 
 
 
