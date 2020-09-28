@@ -557,6 +557,40 @@ println(files?.size ?: "empty")
 
 ## 코틀린 인 액션
 
+<details>
+  <summary>2. 코틀린 기초</summary>
+  <div markdown="1">
+
+### 함수
+```kotlin
+fun max(a: Int, b: Int): Int {
+return if (a > b) a else b // 블록이 본문
+}
+fun max2(a: Int, b: Int): Int = if (a > b) a else b // 식이 본문
+fun max3(a: Int, b: Int) = if (a > b) a else b // 식이 본문이면 리턴 타입 생략 가능(타입추론)
+```
+- 함수 선언은 fun 키워드로 시작
+- fun 다음이 함수 이름이 위치
+- 함수 이름 뒤에 괄호 안에 파라미터 목록
+  - 파라미터 이름과 타입은 콜론으로 구분
+  - 각 파라미터는 콤마로 구분
+- 본문
+  - 블록이 본문인 함수 : 중괄호로 본문을 둘러쌈
+  - 식이 본문이 함수 : 줄괄호 대신 등호와 식
+
+### 변수
+```kotlin
+val question = "나는 누구인가?" // 타입 생략, 컴파일러가 초기화 식을 이용 유추
+val answer1 = 30
+val answer2: Int = 42 // 타입 지정
+val answer3: Int // 초기화 식이 없으면 반드시 타입을 명시
+answer3 = 42
+```
+
+### 변경 가능 변수와 변경 불가 변수
+- val : 변경 불가능한 참조를 저장하는 변수. 일단 초기화하면 제대입이 불가능
+  - 정확히 한 버만 초기화 실행 가능
+- var : 변경 가능한 참조. 변수 타입은 고정
 
 
 
