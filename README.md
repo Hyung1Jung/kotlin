@@ -236,7 +236,7 @@ fun printProduct(arg1: String, arg2: String) {
     val y = parseInt(arg2)
     // `x * y` 코드는 에러를 발생하는데, 이유는 null을 가질 수 있기 때문이다.
     if (x != null && y != null) {
-    // null 검사 이후에 x와 y를 자동으로 null 불가로 변환
+        // null 검사 이후에 x와 y를 자동으로 null 불가로 변환
         println(x * y)
     } else {
         println("either '$arg1' or '$arg2' is not a number")
@@ -267,7 +267,7 @@ is 연산자는 식이 타입의 인스턴스인지 검사한다. 불변 로컬 
 ```kotlin
 fun getStringLength(obj: Any): Int? {
     if (obj is String) {
-    // 이 블록에서는 `obj`를 자동으로 `String`으로 변환
+        // 이 블록에서는 `obj`를 자동으로 `String`으로 변환
         return obj.length
     }
     // 타입 검사 블록 밖에서 `obj`는 여전히 `Any` 타입
@@ -283,7 +283,6 @@ fun getStringLength(obj: Any): Int? {
     // `obj`를 자동으로 `String`으로 변환
     return obj.length
 }
-
 ```
 
 또는 심지어 다음도 가능
@@ -297,6 +296,85 @@ fun getStringLength(obj: Any): Int? {
     return null
 }
 ```
+
+### for 루프 사용
+
+```kotlin
+val items = listOf("apple", "banana", "kiwi")
+for (item in items) {
+    println(item)
+}
+```
+
+또는
+
+```kotlin
+val items = listOf("apple", "banana", "kiwi")
+for (index in items.indices) {
+    println("item at $index is ${items[index]}")
+}
+```
+
+### while 루프 사용
+
+```kotlin
+val items = listOf("apple", "banana", "kiwi")
+var index = 0
+while (index < items.size) {
+    println("item at $index is ${items[index]}")
+    index++
+}
+```
+
+### when 식 사용
+```kotlin
+fun describe(obj: Any): String =
+when (obj) {
+1 -> "One"
+"Hello" -> "Greeting"
+is Long -> "Long"
+!is String -> "Not a string"
+else -> "Unknown"
+}
+```
+
+### 범위 사용
+```kotlin
+val x = 10
+val y = 9
+if (x in 1..y+1) {
+println("fits in range")
+}
+```
+
+!in 연산자를 사용해서 숫자가 범위를 벗어나는지 검사한다:
+```kotlin
+val list = listOf("a", "b", "c")
+if (-1 !in 0..list.lastIndex) {
+println("-1 is out of range")
+}
+if (list.size !in list.indices) {
+println("list size is out of valid list indices range too")
+}
+```
+
+범위를 반복:
+```kotlin
+for (x in 1..5) {
+print(x)
+}
+```
+
+또는 단순한 범위 이상:
+```kotlin
+for (x in 1..10 step 2) {
+print(x)
+}
+for (x in 9 downTo 0 step 3) {
+print(x)
+}
+```
+
 
   </div>
 </details>
