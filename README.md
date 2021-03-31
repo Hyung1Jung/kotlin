@@ -327,54 +327,58 @@ while (index < items.size) {
 ```
 
 ### when 식 사용
+
 ```kotlin
 fun describe(obj: Any): String =
-when (obj) {
-1 -> "One"
-"Hello" -> "Greeting"
-is Long -> "Long"
-!is String -> "Not a string"
-else -> "Unknown"
-}
+        when (obj) {
+            1 -> "One"
+            "Hello" -> "Greeting"
+            is Long -> "Long"
+            !is String -> "Not a string"
+            else -> "Unknown"
+        }
 ```
 
 ### 범위 사용
+
 ```kotlin
 val x = 10
 val y = 9
-if (x in 1..y+1) {
-println("fits in range")
+if (x in 1..y + 1) {
+    println("fits in range")
 }
 ```
 
 !in 연산자를 사용해서 숫자가 범위를 벗어나는지 검사한다:
+
 ```kotlin
 val list = listOf("a", "b", "c")
 if (-1 !in 0..list.lastIndex) {
-println("-1 is out of range")
+    println("-1 is out of range")
 }
 if (list.size !in list.indices) {
-println("list size is out of valid list indices range too")
+    println("list size is out of valid list indices range too")
 }
 ```
 
 범위를 반복:
+
 ```kotlin
 for (x in 1..5) {
-print(x)
+    print(x)
 }
 ```
 
 또는 단순한 범위 이상:
+
 ```kotlin
 for (x in 1..10 step 2) {
-print(x)
+    print(x)
 }
 for (x in 9 downTo 0 step 3) {
-print(x)
+    print(x)
 }
 ```
-
 
   </div>
 </details>
