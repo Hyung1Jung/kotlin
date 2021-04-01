@@ -380,6 +380,177 @@ for (x in 9 downTo 0 step 3) {
 }
 ```
 
+### 콜렉션 사용
+
+콜렉션에 대한 반복
+
+```kotlin
+for (item in items) {
+    println(item)
+}
+```
+
+in 연산자로 콜렉션이 객체를 포함하는지 검사:`
+
+```kotlin
+when {
+    "orange" in items -> println("juicy")
+    "apple" in items -> println("apple is fine too")
+}
+```
+
+콜렉션을 걸러내고 변환하기 위해 람다 식 사용:
+
+```kotlin
+fruits
+        .filter { it.startsWith("a") }
+        .sortedBy { it }
+        .map { it.toUpperCase() }
+        .forEach { println(it) }
+```
+
+### 기본 클래스와 인스턴스 만들기:
+
+```kotlin
+val rectangle = Rectangle(5.0, 2.0) // 'new' 키워드 필요하지 않음
+val triangle = Triangle(3.0, 4.0, 5.0)
+```
+
+### 이디엄
+
+코틀린에서 종종 사용되는 이디엄을 정리했다. 선호하는 이디엄이 있다면 풀리퀘스트를 날려 기여해보자.
+
+DTO 생성 (POJO/POCO)
+
+```kotlin
+data class Customer(val name: String, val email: String)
+```
+
+다음 기능을 가진 `Customer` 클래스를 제공한다:
+
+- 모든 프로퍼티에 대한 getter (그리고 var 의 경우 setter)
+- equals()
+- hashCode()
+- toString()
+- copy()
+- 모든 프로퍼티에 대한 component1() , component2() , …,
+
+함수 파라미터의 기본 값
+
+```kotlin
+fun foo(a: Int = 0, b: String = "") {
+    ...
+}
+```
+
+리스트 필터링
+
+```kotlin
+val positives = list.filter { x -> x > 0 }
+```
+
+더 짧게 표현:
+
+```kotlin
+val positives = list.filter { it > 0 
+```
+
+스트링 삽입
+
+```kotlin
+println("Name $name")
+```
+
+인스턴스 검사
+
+```kotlin
+when (x) {
+    is Foo -> ...
+    is Bar -> ...
+    else ->   ...
+}
+```
+
+쌍으로 맵이나 목록 탐색
+
+```kotlin
+for ((k, v) in map) {
+  println("$k -> $v")
+}
+```
+
+k , v 대신 임의 이름을 사용할 수 있다.
+
+범위 사용
+
+```kotlin
+for (i in 1..100) {
+  ...
+} // 닫힌 범위: 100 포함
+for (i in 1 until 100) {
+  ...
+} // 반만 열린 범위: 100 미포함
+for (x in 2..10 step 2) {
+  ...
+}
+for (x in 10 downTo 1) {
+  ...
+}
+if (x in 1..10) {
+  ...
+}
+```
+
+읽기 전용 리스트
+```kotlin
+val list = listOf("a", "b", "c")
+```
+
+읽기 전용 맵
+```kotlin
+val map = mapOf("a" to 1, "b" to 2, "c" to 3)
+```
+
+맵 접근
+```kotlin
+println(map["key"])
+map["key"] = value
+```
+
+지연(lazy) 프로퍼티
+```kotlin
+val p: String by lazy {
+// 문자열 계산
+}
+```
+
+확장 함수
+```kotlin
+fun String.spaceToCamelCase() {
+  ...
+}
+"Convert this to camelcase".spaceToCamelCase()
+```
+
+싱글톤 생성
+```kotlin
+object Resource {
+  val name = "Name"
+}
+```
+
+If not null 축약
+```kotlin
+val files = File("Test").listFiles()
+println(files?.size)
+```
+
+If not null and else 축약
+```kotlin
+val files = File("Test").listFiles()
+println(files?.size ?: "empty")
+```      
+
   </div>
 </details>
 
