@@ -782,6 +782,27 @@ fun evalWithLogging(e: Expr) : Int =
 ```
 
 
+  </div>
+</details>
+
+<details>
+  <summary>3. 함수 정의와 호출</summary>
+  <div markdown="1">
+
+### 콜렉션 생성
+주요 메서드
+
+- val set = hashSetOf(1, 2, 3) // HashSet
+- val list = arrayListOf(1, 2, 3) // ArrayList
+- val map = hashMapOf(1 to "one", 2 to "two") // HashMap
+  
+자체 콜렉션이 아닌 자바 콜렉션 사용: 자바 코드와 상호작용 용이
+
+추가 확장 확수 제공: 예, list.last(), set.max() 등
+
+
+
+
 
   </div>
 </details>
