@@ -778,10 +778,100 @@ fun eval(e: Expr): Int {
 블록의 마지막 식이 if와 when의 결과가 됨
 ```kotlin
 fun evalWithLogging(e: Expr) : Int =
-    
+  when (e) {
+    is Num -> {
+      println("num : &{e.value}")
+      e.value // 결과
+    }
+    is Sum -> {
+      val left = evalWithLogging(e.left)
+      val right = evalWithLogging(e.right)
+      println("sum : $left + $right")
+      left + right // 결과
+    }
+    else ->
+      throw Exception("Unknow Exp")
+  }
 ```
 
+### While 루프
+자바와 동일
+```kotlin
+while (조건) {
+  ...
+}
+do {
+    ...
+}while (조건)
+```
 
+### 범위와 수열
+범위(ClosedRange 인터페이스) : 두 값으로 이뤄진 구간
+수열(Progression) : 범위에 속한 값을 일정한 순서로 이터레이션
+- 생성 예
+  - 1 rangeTo 10 step 2 또는 1..10 step 2
+  - 100 downTo 1 step 2
+  - 0 until 10
+```kotlin
+for (i in 1..100) {
+println(i)
+}
+```
+### 맵, 리스트에 대한 이터레이션
+```kotlin
+val binbaryReps = TreeMap<Char, String>()
+...
+for ( (key, value) in binbaryReps) { // 맵에 대한 이터레이션
+println("$key = $value")
+}
+```
+```kotlin
+val list = arrayListOf("10", "11", "1001")
+for ((idx, ele) in list.withIndex()) {
+println("$idx: $ele")
+}
+```
+
+### in으로 컬렉션이나 범위 원소 검사
+
+in으로 어떤 값이 범위나 콜렉션에 속하는지 검사
+```kotlin
+fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'
+fun isNotDigit(c: Char) = c !in '0'..'9'
+fun recognize(c: Char) = when(c) {
+    in '0'..'9' ‐> "It's digit!"
+    in 'a'..'z', in 'A'..'Z' ‐> "It's a letter"
+    else ‐> "I don't know."
+}
+println("Kotlin" in "Java".."Scala") // Comparable 구현 클래스
+```
+
+### 익셉션
+
+발생
+```kotlin
+throw IllegalArgumentException("msg")
+```
+
+익셉션 처리
+```kotlin
+fun readNumber(reader: BufferedReader): Int? {
+    // try는 식
+    try {
+        val line = reader.readLine()
+        return Integer.parseInt(line)
+    } catch (e: NumberFormatException) {
+        return throw IllegalArgumentException("msg")
+    } finally {
+        reader.close()
+    }
+}
+
+fun main(args: Array<String>) {
+    val reader = BufferedReader(StringReader("12ㅇ3"))
+    println(readNumber(reader))
+}
+```
   </div>
 </details>
 
@@ -799,7 +889,6 @@ fun evalWithLogging(e: Expr) : Int =
 자체 콜렉션이 아닌 자바 콜렉션 사용: 자바 코드와 상호작용 용이
 
 추가 확장 확수 제공: 예, list.last(), set.max() 등
-
 
 
 
