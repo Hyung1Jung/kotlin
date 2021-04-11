@@ -1,3 +1,5 @@
+package basic_grammer
+
 fun main() {
     println("값 : " + 100)
     println("값 : ${100}")
