@@ -1,4 +1,4 @@
-package variable
+package me.hyungil.variable
 
 fun main() {
     // 정수 리터럴

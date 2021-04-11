@@ -1,4 +1,4 @@
-package basic_grammer
+package me.hyungil.basic_grammer
 
 fun main() {
     println("값 : " + 100)
