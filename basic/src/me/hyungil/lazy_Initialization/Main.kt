@@ -1,4 +1,4 @@
-package lazy_Initialization
+package me.hyungil.lazy_Initialization
 
 fun main() {
     val obj1 = TestClass1()
