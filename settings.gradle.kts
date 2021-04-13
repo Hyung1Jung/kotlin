@@ -1,2 +1,2 @@
 rootProject.name = "kotlin"
-include("Basic")
+include("Basic","basic-module")
