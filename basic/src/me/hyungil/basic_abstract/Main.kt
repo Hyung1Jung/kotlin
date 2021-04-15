@@ -1,3 +1,5 @@
+package me.hyungil.basic_abstract
+
 fun main() {
     // val obj1 = Super1()
     // testFun1(obj1)
