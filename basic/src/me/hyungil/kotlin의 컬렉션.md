@@ -1,0 +1,84 @@
+## kotlin의 컬렉션
+
+### 배열
+- 연속된 기억공간을 확보하여 값 들을 저장하고 관리하는 자료 구조를 의미한다.
+- 배열은 0부터 시작되는 인덱스 번호로 관리한다.
+- kotlin에서는 다양한 타입의 값을 배열에 담을 수 있으며 한 가지 타입으로 제한하여 값을 담을 수 도 있다.
+
+**배열 생성하기**
+- 배열을 생성할 때는 arrayOf(값들) 함수를 이용한다.
+- arrayOf는 다양한 값들을 담을 수 있다.
+- 담을 값의 자료형을 제한하고 싶다면 자료형 + arrayOf 형태의 함수를 사용한다.
+- arrayOf<제네릭타입>도 가능하다.
+
+```kotlin
+val array1 = arrayOf(10, 20, 30, 40, 50)
+val array2 = arrayOf(10, 20, 30, "문자열", true)
+
+val array3 = intArrayOf(10, 20, 30, 40, 50)
+val array4 = doubleArrayOf(11.11, 22.22, 33.33, 44.44, 55.55)
+val array5= ArrayOf<Boolean>(true, true, true, false, false, false)
+```
+
+- arrayOf 함수가 아닌 Array 클래스를 통해 직접 객체를 생성할 수도 있다.
+- Array(개수. {식})
+
+```kotlin
+val array10 = Array(5, {0})
+val array11 = Array(5, {a -> a * 2})
+```
+
+**for 문 사용하기**
+- for문을 통해 배열이 가지고 있는 값의 수 만큼 반복하여 값을 사용할 수 있다.
+```kotlin
+for(item in array1){
+    println("array1 : $item")
+}
+```
+
+**다차원 배열**
+```kotlin
+val array6 = arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
+for(item1 in array6){
+    for(item2 in item1){
+        println("array6 : $item2")
+    }
+}
+```
+
+**배열 요소 접근**
+- 배열은 0부터 시작하는 인덱스 번호를 이용해 관리하며 다음과 같이 값을 가져다 사용할 수 있다.
+```kotlin
+println("array1 - 0 : ${array1[0]}")
+println("array1 - 1 : ${array1[1]}")
+println("array1 - 2 : ${array1.get(2)}")
+println("array1 - 3 : ${array1.get(3)}")
+```
+
+**배열 요소에 값 저장하기**
+- 배열은 0 부터 시작하는 인덱스 번호를 통해 기억공간에 접근하고 값을 저장할 수 있다.
+```kotlin
+array1[0] = 100
+println("array1 - 0 : ${array1[0]}")
+array1.set(1, 200)
+println("array1 - 1 : ${array1[1]}")
+```
+
+**배열 오소 개수**
+- size 프로퍼티를 사용하면 배열이 관리하는 요소의 개수를 파악할 수 있다.
+
+**제공 메서드**
+- plus : 요소를 추가한 새로운 배열을 만들어 반환한다.
+- sliceArray : 지정된 범위의 요소를 관리하는 배열을 만들어 반환한다.
+- first : 제일 앞의 값을 반환한다.
+- last : 제일 마지막 값을 반환한다.
+- indexOf : 지정된 값의 index를 반환한다.
+- average : 평균 값을 반환한다.
+
+- count : 요소의 개수를 반환한다.
+- contains : 지정된 값이 포함되어 있는지 반환한다.
+- sotedArray: 오름 차순 정렬된 배열을 반환한다.
+- sortedArrayDescending : 내림 차순 정렬된 배열을 반환한다.
+
+**정리**
+- kotlin은 배열에 다양한 기능을 추가하여 더욱 편리하게 사용할 수 있도록 제공한다.
