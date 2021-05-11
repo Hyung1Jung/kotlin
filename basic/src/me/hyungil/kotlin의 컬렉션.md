@@ -152,3 +152,34 @@ println("list1 1 : ${list1[2]}")
 
 **정리**
 - 리스트는 인덱스 번호를 통해 객체들을 관리하는 컬렉션 객체이다.
+
+### Map 
+- 객체 이름을 통해 관리하는 컬렉션이다
+
+**Map 생성**
+- mapOf : 불변형 Map를 생성한다.
+- mutableMapOf : 가변형 Map를 생성한다.
+
+**객체 가져오기**
+- get : 이름을 통해 객체를 추출할 수 있다.
+- kotlin의 Map는 []를 사용할 수 있다.
+```kotlin
+println("map1 key1 : ${map1.get("key1")}")
+println("map1 key2 : ${map1["key2"]}")
+```
+
+**기타 메서드**
+- size : 관리하는 요소의 개수
+- keys : key를 배열로 반환한다.
+- values : 객체들을 배열로 반환한다.
+- containsKey : 저장된 이름으로 객체가 있는지 확인한다.
+- containsValue : 지정된 값으로 객체가 있는지 확인한다.
+
+**가변형 메서드**
+- put : 객체를 추가한다. 기존 이름과 동일할 경우 덮어 씌운다.
+- remove : 주어진 이름으로 객체를 제거한다.
+
+**Map 상호 변경**
+- toMap : 불변형 Map을 생성해 반환한다.
+- toMutableMap : 가변형 Map을 생성해 반환한다.
+
