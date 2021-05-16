@@ -11,13 +11,13 @@ fun main() {
 //        println(str!!.length)
 
         val str2 = "안녕하세요"
-        val a2:Int = str2.toInt()
+        val a2: Int = str2.toInt()
         println("a2 : $a2")
-    }catch(e:ArithmeticException){
+    } catch (e: ArithmeticException) {
         println("수학적 오류가 발생하였습니다")
-    }catch(e:KotlinNullPointerException){
+    } catch (e: KotlinNullPointerException) {
         println("Null 오류가 발생하였습니다")
-    }catch(e:Exception){
+    } catch (e: Exception) {
         println("예외 발생")
         e.printStackTrace()
     }
